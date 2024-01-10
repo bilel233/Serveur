@@ -1,25 +1,21 @@
-var builder = WebApplication.CreateBuilder(args);
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+   public static void Main(string[] args)
+    {
+        var connectionString = "mongodb+srv://BilelMajdoub:Mongodb1998%40@bdd.uquucse.mongodb.net/"; 
+        var client = new MongoClient(connectionString);
+        var database = client.GetDatabase("sample_mflix");
+
+        var collection = database.GetCollection<BsonDocument>("users"); 
+
+        Console.WriteLine("Connecté à MongoDB!");
+    }
 }
 
-app.UseHttpsRedirection();
 
-app.UseAuthorization();
 
-app.MapControllers();
 
-app.Run();
