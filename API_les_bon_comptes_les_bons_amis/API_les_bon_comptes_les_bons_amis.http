@@ -1,0 +1,6 @@
+@API_les_bon_comptes_les_bons_amis_HostAddress = http://localhost:5124
+
+GET {{API_les_bon_comptes_les_bons_amis_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
